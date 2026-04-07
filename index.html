@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeurovaPlus | Official Website</title>
+  <meta name="description" content="NeurovaPlus is a focus drink built for students, professionals, creators, and anyone who wants clean energy, sharper focus, and no crash." />
+  <style>
+    :root {
+      --purple: #4B0082;
+      --teal: #008080;
+      --mint: #A3D5D5;
+      --white: #ffffff;
+      --ink: #0f1218;
+      --muted: #5d6470;
+      --line: rgba(15,18,24,0.08);
+      --card: #ffffff;
+      --shadow: 0 24px 60px rgba(17, 28, 40, 0.12);
+      --radius: 28px;
+      --max: 1280px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      line-height: 1.55;
+      background:
+        radial-gradient(circle at 90% 8%, rgba(163,213,213,0.28), transparent 15%),
+        radial-gradient(circle at 8% 32%, rgba(75,0,130,0.08), transparent 18%),
+        linear-gradient(180deg, #f7fbfc 0%, #ffffff 48%, #f6f7fc 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: min(var(--max), calc(100% - 2rem)); margin: 0 auto; }
+
+    .topbar {
+      background: linear-gradient(90deg, rgba(75,0,130,0.97), rgba(0,128,128,0.93));
+      color: white; text-align: center; padding: 0.85rem 1rem; font-size: 0.95rem; font-weight: 700;
+    }
+    .nav {
+      position: sticky; top: 0; z-index: 100; backdrop-filter: blur(14px);
+      background: rgba(255,255,255,0.88); border-bottom: 1px solid rgba(15,18,24,0.05);
+    }
+    .nav-inner {
+      min-height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 0.8rem; font-weight: 900; font-size: 1.15rem; letter-spacing: -0.04em;
+    }
+    .logo {
+      width: 46px; height: 46px; border-radius: 16px; background: linear-gradient(135deg, var(--purple), var(--teal));
+      position: relative; overflow: hidden; box-shadow: 0 14px 28px rgba(75,0,130,0.22);
+    }
+    .logo::before, .logo::after {
+      content: ""; position: absolute; border: 2px solid rgba(255,255,255,0.86); border-radius: 999px;
+    }
+    .logo::before { width: 24px; height: 24px; top: 9px; left: 7px; }
+    .logo::after { width: 12px; height: 12px; top: 15px; right: 7px; background: rgba(255,255,255,0.15); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--muted); font-weight: 800; text-transform: uppercase; font-size: 0.94rem; letter-spacing: 0.02em;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; padding: 1rem 1.35rem; border-radius: 999px;
+      border: none; font-weight: 800; cursor: pointer; transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,0,0,0.10); }
+    .btn-primary { color: white; background: linear-gradient(135deg, var(--purple), #7b56d7 42%, var(--mint) 100%); }
+    .btn-light { background: white; color: var(--ink); border: 1px solid var(--line); }
+
+    .hero { padding: 4.5rem 0 4rem; overflow: hidden; position: relative; }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 2rem; align-items: center; }
+    .eyebrow {
+      display: inline-flex; padding: 0.5rem 0.85rem; border-radius: 999px; background: rgba(163,213,213,0.16);
+      border: 1px solid rgba(0,128,128,0.14); color: var(--teal); font-weight: 800; margin-bottom: 1rem;
+    }
+    h1, h2, h3, h4 { margin: 0; line-height: 0.98; letter-spacing: -0.05em; }
+    h1 { font-size: clamp(3rem, 7vw, 6rem); max-width: 8ch; }
+    h2 { font-size: clamp(2rem, 5vw, 3.5rem); max-width: 12ch; }
+    h3 { font-size: 1.3rem; }
+    h4 { font-size: 1rem; }
+
+    .hero-copy p { color: var(--muted); font-size: 1.08rem; max-width: 58ch; margin: 1.25rem 0 1.7rem; }
+    .hero-actions { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+    .hero-badges { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .badge {
+      padding: 0.75rem 1rem; border-radius: 999px; background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(15,18,24,0.06); box-shadow: var(--shadow); font-weight: 700; color: #36414d;
+    }
+
+    .hero-stage { min-height: 620px; position: relative; display: grid; place-items: center; isolation: isolate; }
+    .glow {
+      position: absolute; width: 520px; height: 520px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(163,213,213,0.42), rgba(163,213,213,0.06) 55%, transparent 68%);
+      filter: blur(10px);
+    }
+    .rings {
+      position: absolute; width: 520px; height: 520px; border-radius: 50%;
+      background: repeating-radial-gradient(circle at center, rgba(0,128,128,0.12) 0 2px, transparent 2px 28px);
+      opacity: 0.62;
+    }
+    .hero-can {
+      position: relative; z-index: 2; width: min(430px, 76vw);
+      filter: drop-shadow(0 36px 48px rgba(18, 28, 40, 0.16));
+    }
+    .float-card {
+      position: absolute; z-index: 3; background: rgba(255,255,255,0.86); border: 1px solid rgba(15,18,24,0.06);
+      border-radius: 22px; padding: 1rem 1.1rem; box-shadow: var(--shadow); max-width: 220px; backdrop-filter: blur(10px);
+    }
+    .float-card strong { display: block; margin-bottom: 0.2rem; font-size: 1rem; }
+    .float-card.left { left: 0; top: 16%; }
+    .float-card.right { right: 0; bottom: 18%; }
+
+    section { padding: 4.5rem 0; }
+    .section-head {
+      display: flex; justify-content: space-between; align-items: end; gap: 1rem; margin-bottom: 1.8rem;
+    }
+    .section-head p { margin: 0; max-width: 58ch; color: var(--muted); }
+
+    .product-band {
+      background: linear-gradient(180deg, rgba(163,213,213,0.12), rgba(255,255,255,0.45));
+      border-top: 1px solid rgba(15,18,24,0.05); border-bottom: 1px solid rgba(15,18,24,0.05);
+    }
+    .grid-2, .grid-3, .grid-4 { display: grid; gap: 1.2rem; }
+    .grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .card {
+      background: var(--card); border: 1px solid rgba(15,18,24,0.06); border-radius: var(--radius);
+      padding: 1.35rem; box-shadow: var(--shadow);
+    }
+    .card p, .copy, li { color: var(--muted); }
+
+    .product-card {
+      background: white; border-radius: 28px; border: 1px solid rgba(15,18,24,0.06);
+      box-shadow: var(--shadow); padding: 1.2rem; text-align: center;
+    }
+    .mini-can-img {
+      width: 120px; height: 250px; object-fit: contain; margin: 0 auto 1rem;
+      filter: drop-shadow(0 12px 20px rgba(18,28,40,0.12));
+    }
+    .flavor-tag {
+      display: inline-block; margin-top: 0.9rem; padding: 0.5rem 0.75rem; border-radius: 999px;
+      background: rgba(75,0,130,0.08); color: var(--purple); font-weight: 800; font-size: 0.9rem;
+    }
+
+    .image-showcase {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.2rem;
+    }
+    .showcase-img {
+      border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid rgba(15,18,24,0.06);
+      background: white;
+    }
+    .showcase-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    .promo {
+      display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1.2rem; align-items: stretch;
+    }
+    .promo-panel {
+      border-radius: 34px; min-height: 460px; overflow: hidden; position: relative; box-shadow: var(--shadow);
+    }
+    .promo-main {
+      background:
+        radial-gradient(circle at 80% 20%, rgba(163,213,213,0.34), transparent 16%),
+        linear-gradient(135deg, #1a1730 0%, #40236c 28%, #008080 100%);
+      color: white; padding: 2rem; display: grid; align-items: end;
+    }
+    .promo-main::before {
+      content: ""; position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), transparent 22%),
+        repeating-radial-gradient(circle at 70% 45%, rgba(163,213,213,0.16) 0 2px, transparent 2px 24px);
+      opacity: 0.75;
+    }
+    .promo-main .content, .promo-side .content { position: relative; z-index: 1; }
+    .promo-main h2 { max-width: 8ch; }
+    .promo-main p { color: rgba(255,255,255,0.84); max-width: 48ch; margin: 1rem 0 1.4rem; }
+    .promo-can {
+      position: absolute; right: 1rem; bottom: 0; width: min(220px, 38%); z-index: 1;
+      filter: drop-shadow(0 24px 30px rgba(0,0,0,0.18));
+    }
+    .promo-side {
+      background:
+        radial-gradient(circle at 80% 18%, rgba(163,213,213,0.32), transparent 18%),
+        linear-gradient(180deg, #fdfefe 0%, #eef4f8 100%);
+      padding: 2rem; display: grid; align-items: end; border: 1px solid rgba(15,18,24,0.05);
+    }
+    .check-row { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
+    .check-pill {
+      padding: 0.8rem 1rem; border-radius: 999px; background: rgba(255,255,255,0.88);
+      border: 1px solid rgba(15,18,24,0.06); font-weight: 700;
+    }
+    .about-layout {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; align-items: stretch;
+    }
+    .about-photo {
+      min-height: 420px; border-radius: 30px; overflow: hidden; position: relative; box-shadow: var(--shadow);
+      background: white; border: 1px solid rgba(15,18,24,0.06);
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+    .about-photo-content {
+      position: absolute; inset: auto 1.5rem 1.5rem 1.5rem; z-index: 1;
+      background: rgba(255,255,255,0.86); border: 1px solid rgba(15,18,24,0.06); border-radius: 20px;
+      padding: 1rem; box-shadow: var(--shadow);
+    }
+
+    .lifestyle-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.2rem;
+    }
+    .scene {
+      min-height: 320px; border-radius: 28px; overflow: hidden; position: relative;
+      padding: 1.25rem; display: flex; flex-direction: column; justify-content: end; box-shadow: var(--shadow);
+      background: #ddd;
+    }
+    .scene img {
+      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    }
+    .scene::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(0,0,0,0.35));
+      z-index: 1;
+    }
+    .scene > * { position: relative; z-index: 2; }
+    .scene-badge {
+      width: fit-content; margin-top: 0.8rem; padding: 0.45rem 0.7rem; border-radius: 999px;
+      background: rgba(255,255,255,0.84); color: var(--ink); font-weight: 700; font-size: 0.9rem;
+    }
+
+    .audience-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    }
+    .audience-card {
+      background: white; border-radius: 28px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid rgba(15,18,24,0.06);
+    }
+    .audience-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+    .audience-body { padding: 1.15rem; }
+
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .step-num {
+      width: 58px; height: 58px; border-radius: 18px; display: grid; place-items: center; color: white;
+      font-size: 1.2rem; font-weight: 900; background: linear-gradient(135deg, var(--purple), var(--teal)); margin-bottom: 1rem;
+    }
+
+    .shop-layout {
+      display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 1.2rem; align-items: center;
+    }
+    .shop-stage {
+      min-height: 480px; border-radius: 32px;
+      background:
+        radial-gradient(circle at 75% 20%, rgba(163,213,213,0.32), transparent 18%),
+        linear-gradient(180deg, #fbfefe 0%, #eef4f8 100%);
+      border: 1px solid rgba(15,18,24,0.05); box-shadow: var(--shadow); display: grid; place-items: center;
+      position: relative; overflow: hidden;
+    }
+    .shop-stage::before {
+      content: ""; position: absolute; width: 540px; height: 220px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(75,0,130,0.12), rgba(0,128,128,0.04) 58%, transparent 68%);
+      bottom: -90px; left: 50%; transform: translateX(-50%);
+    }
+    .shop-can {
+      position: relative; z-index: 2; width: min(320px, 70%);
+      filter: drop-shadow(0 26px 34px rgba(18,28,40,0.16));
+    }
+    .price { font-size: 3rem; font-weight: 900; line-height: 1; margin: 0.45rem 0 1rem; }
+    .product-title { color: var(--muted); font-size: 1rem; }
+    .option-row { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-top: 1rem; }
+    .option {
+      padding: 0.85rem 1rem; border-radius: 999px; background: white;
+      border: 1px solid rgba(15,18,24,0.08); font-weight: 700;
+    }
+    .option.active {
+      background: linear-gradient(135deg, rgba(75,0,130,0.12), rgba(0,128,128,0.12));
+      border-color: rgba(75,0,130,0.22);
+    }
+    .proof { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 1.1rem; }
+    .avatars { display: flex; }
+    .avatar {
+      width: 42px; height: 42px; border-radius: 50%; border: 3px solid white; margin-left: -10px;
+      background: linear-gradient(135deg, var(--purple), var(--mint));
+    }
+    .avatar:first-child { margin-left: 0; }
+
+    .faq-list { display: grid; gap: 1rem; }
+    .faq-item {
+      background: white; border: 1px solid rgba(15,18,24,0.06); border-radius: 22px; padding: 1.2rem 1.25rem; box-shadow: var(--shadow);
+    }
+    .faq-item p { margin: 0.7rem 0 0; color: var(--muted); }
+
+    .social-band {
+      background: linear-gradient(135deg, rgba(75,0,130,0.98), rgba(0,128,128,0.92));
+      color: white; text-align: center;
+    }
+    .social-band h2 { max-width: none; }
+    .social-band p { max-width: 58ch; margin: 1rem auto 1.4rem; color: rgba(255,255,255,0.84); }
+    .social-row { display: flex; justify-content: center; gap: 0.9rem; flex-wrap: wrap; }
+    .social-chip {
+      padding: 0.9rem 1.1rem; border-radius: 999px; background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18); font-weight: 700;
+    }
+
+    footer {
+      background: #edf3f7; padding: 2.6rem 0 3rem; border-top: 1px solid rgba(15,18,24,0.06);
+    }
+    .footer-top {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding-bottom: 1.5rem; border-bottom: 1px solid rgba(15,18,24,0.08); margin-bottom: 1.5rem;
+    }
+    .footer-links {
+      display: flex; flex-wrap: wrap; gap: 1rem 1.25rem; align-items: center;
+    }
+    .footer-links a {
+      color: var(--ink); font-weight: 800; font-size: 0.94rem; text-transform: uppercase; letter-spacing: 0.02em;
+    }
+    .footer-columns { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 1.2rem; }
+    .footer-col h4 { margin: 0 0 0.8rem; font-size: 0.96rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .footer-col a, .footer-note { color: var(--muted); font-size: 0.95rem; }
+    .footer-col { display: grid; gap: 0.55rem; align-content: start; }
+
+    @media (max-width: 1020px) {
+      .hero-grid, .grid-2, .grid-3, .grid-4, .promo, .about-layout, .lifestyle-grid,
+      .audience-grid, .steps, .shop-layout, .footer-columns, .image-showcase {
+        grid-template-columns: 1fr 1fr;
+      }
+      .section-head, .footer-top { flex-direction: column; align-items: start; }
+      .float-card { display: none; }
+    }
+    @media (max-width: 720px) {
+      .nav-inner { flex-direction: column; justify-content: center; padding: 0.8rem 0 1rem; }
+      .hero-grid, .grid-2, .grid-3, .grid-4, .promo, .about-layout, .lifestyle-grid,
+      .audience-grid, .steps, .shop-layout, .footer-columns, .image-showcase {
+        grid-template-columns: 1fr;
+      }
+      .hero-stage { min-height: 460px; }
+      h1 { max-width: 8ch; }
+      .promo-can { position: static; width: 180px; margin: 1rem 0 0 auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Free shipping on first orders • Subscribe and save 10%</div>
+
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#home" class="brand" aria-label="NeurovaPlus home">
+        <span class="logo" aria-hidden="true"></span>
+        <span>NeurovaPlus</span>
+      </a>
+      <div class="nav-links">
+        <a href="#flavours">Flavours</a>
+        <a href="#about">About</a>
+        <a href="#audiences">For You</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#shop">Buy Now</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn btn-primary" href="#shop">Shop Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Clean energy for sharper focus</span>
+        <h1>Stay sharp. Stay unstoppable.</h1>
+        <p>
+          Meet NeurovaPlus, the focus drink built for students, professionals, creators, and anyone who wants clean energy, mental clarity, and steady momentum without the crash.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#shop">Buy Now</a>
+          <a class="btn btn-light" href="#flavours">See Flavours</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge">Clean Energy</span>
+          <span class="badge">No Crash</span>
+          <span class="badge">Built for Focus</span>
+        </div>
+      </div>
+
+      <div class="hero-stage" aria-hidden="true">
+        <div class="glow"></div>
+        <div class="rings"></div>
+
+        <div class="float-card left">
+          <strong>Berry Focus</strong>
+          Smooth, bold, and made for deep work.
+        </div>
+
+        <img class="hero-can" src="can.jpeg" alt="NeurovaPlus can" />
+
+        <div class="float-card right">
+          <strong>Citrus Boost</strong>
+          Bright flavor with a clean finish.
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="product-band" id="flavours">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Flavours</span>
+            <h2>Pick your focus</h2>
+          </div>
+          <p>
+            Choose the flavour that fits your routine, whether you want something bold, bright, or clean and simple.
+          </p>
+        </div>
+
+        <div class="grid-4">
+          <article class="product-card">
+            <img class="mini-can-img" src="can.jpeg" alt="NeurovaPlus Berry Focus can" />
+            <h3>Berry Focus</h3>
+            <p class="copy">Rich berry flavor for long study nights, work sprints, and high-focus sessions.</p>
+            <span class="flavor-tag">Most Popular</span>
+          </article>
+          <article class="product-card">
+            <img class="mini-can-img" src="can.jpeg" alt="NeurovaPlus Citrus Boost can" />
+            <h3>Citrus Boost</h3>
+            <p class="copy">Bright and refreshing with a lighter finish for everyday productivity.</p>
+            <span class="flavor-tag">Fresh Pick</span>
+          </article>
+          <article class="product-card">
+            <img class="mini-can-img" src="can.jpeg" alt="NeurovaPlus Original Focus can" />
+            <h3>Original Focus</h3>
+            <p class="copy">The core NeurovaPlus experience built for balance, clarity, and performance.</p>
+            <span class="flavor-tag">Classic</span>
+          </article>
+          <article class="product-card">
+            <img class="mini-can-img" src="can.jpeg" alt="NeurovaPlus Zero Sugar can" />
+            <h3>Zero Sugar</h3>
+            <p class="copy">A cleaner everyday option for customers who want focus without extra sweetness.</p>
+            <span class="flavor-tag">Clean Choice</span>
+          </article>
+        </div>
+
+        <div class="image-showcase">
+          <div class="showcase-img"><img src="image1.png" alt="People enjoying NeurovaPlus during work and creative sessions" /></div>
+          <div class="showcase-img"><img src="image2.png" alt="NeurovaPlus campaign image featuring cans and productivity lifestyle visuals" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container promo">
+        <article class="promo-panel promo-main">
+          <div class="content">
+            <span class="eyebrow" style="color:white; border-color:rgba(255,255,255,0.16); background:rgba(255,255,255,0.10)">Why customers choose it</span>
+            <h2>Big focus. Smooth energy.</h2>
+            <p>
+              NeurovaPlus is made for people who want to feel clear, productive, and in control through classes, meetings, creative sessions, and busy days.
+            </p>
+            <a class="btn btn-light" href="#shop">Buy Now</a>
+          </div>
+          <img class="promo-can" src="can.jpeg" alt="NeurovaPlus campaign can" />
+        </article>
+
+        <article class="promo-panel promo-side">
+          <div class="content">
+            <span class="eyebrow">What you get</span>
+            <h2>Clean energy with no crash mindset.</h2>
+            <p class="copy" style="margin-top:1rem;">
+              Customers come to NeurovaPlus for a simple reason: they want something that feels steady, modern, and easy to fit into everyday routines.
+            </p>
+            <div class="check-row">
+              <span class="check-pill">Sharper focus</span>
+              <span class="check-pill">Steady energy</span>
+              <span class="check-pill">Cleaner routine</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">About NeurovaPlus</span>
+            <h2>Made for modern routines</h2>
+          </div>
+          <p>
+            NeurovaPlus was created for people who want more from their daily drink: stronger focus, smoother energy, and a better way to power through demanding days.
+          </p>
+        </div>
+
+        <div class="about-layout">
+          <article class="card">
+            <h3>For students, professionals, and creators</h3>
+            <p style="margin-top:1rem;">
+              Whether you are studying late, building something new, working through deadlines, or managing a packed schedule, NeurovaPlus fits right into your day.
+            </p>
+            <p>
+              It is designed to feel modern, easy, and premium, with flavour options and buying choices that work for first-time customers and repeat buyers alike.
+            </p>
+            <div class="check-row">
+              <span class="check-pill">Study Sessions</span>
+              <span class="check-pill">Work Days</span>
+              <span class="check-pill">Creative Projects</span>
+            </div>
+          </article>
+
+          <div class="about-photo">
+            <img src="image4.png" alt="Professionals enjoying NeurovaPlus in a meeting" />
+            <div class="about-photo-content">
+              <h3>Enjoy anywhere</h3>
+              <p class="copy" style="margin-top:0.6rem;">
+                Morning prep, afternoon work block, office meetings, or late-night creative push — NeurovaPlus is built to go with you.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lifestyle-grid">
+          <article class="scene">
+            <img src="image3.png" alt="Students enjoying NeurovaPlus together on campus" />
+            <h3>Study mode</h3>
+            <p>Perfect for exam prep, note review, and staying locked in longer.</p>
+            <span class="scene-badge">Students</span>
+          </article>
+          <article class="scene">
+            <img src="image4.png" alt="Professionals drinking NeurovaPlus during a work meeting" />
+            <h3>Work mode</h3>
+            <p>Keep your day moving through meetings, deep work, and long task lists.</p>
+            <span class="scene-badge">Professionals</span>
+          </article>
+          <article class="scene">
+            <img src="image5.png" alt="Outdoor adventurer enjoying NeurovaPlus on a mountain" />
+            <h3>Adventure mode</h3>
+            <p>Take your focus beyond the desk and into active, high-energy moments.</p>
+            <span class="scene-badge">Active Lifestyle</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-band" id="audiences">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Made for different routines</span>
+            <h2>One drink. Many moments.</h2>
+          </div>
+          <p>
+            NeurovaPlus can fit into study life, office life, social moments, and high-energy days — wherever people want to feel more focused and switched on.
+          </p>
+        </div>
+
+        <div class="audience-grid">
+          <article class="audience-card">
+            <img src="image3.png" alt="College students sharing NeurovaPlus on campus" />
+            <div class="audience-body">
+              <h3>Students</h3>
+              <p class="copy">Built for campus life, group work, exam sessions, and staying engaged through long days.</p>
+            </div>
+          </article>
+          <article class="audience-card">
+            <img src="image4.png" alt="Office professionals drinking NeurovaPlus during a meeting" />
+            <div class="audience-body">
+              <h3>Professionals</h3>
+              <p class="copy">A clean addition to meetings, focused work, planning sessions, and demanding schedules.</p>
+            </div>
+          </article>
+          <article class="audience-card">
+            <img src="image6.png" alt="Friends enjoying NeurovaPlus while watching sports together" />
+            <div class="audience-body">
+              <h3>Social & Everyday</h3>
+              <p class="copy">Great for casual hangouts, game days, and everyday routines that still call for energy and clarity.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="product-band" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">How It Works</span>
+            <h2>Simple to choose. Easy to enjoy.</h2>
+          </div>
+          <p>
+            NeurovaPlus is made to fit naturally into your routine, from first sip to repeat order.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="card">
+            <div class="step-num">1</div>
+            <h3>Choose a flavour</h3>
+            <p>Pick the can that matches your taste, whether you want berry, citrus, original, or zero sugar.</p>
+          </article>
+          <article class="card">
+            <div class="step-num">2</div>
+            <h3>Drink when you need focus</h3>
+            <p>Reach for NeurovaPlus before classes, during work blocks, or anytime you want cleaner momentum.</p>
+          </article>
+          <article class="card">
+            <div class="step-num">3</div>
+            <h3>Buy your way</h3>
+            <p>Order once when you need a quick refill or subscribe to keep your routine going without interruption.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="shop">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Buy Now</span>
+            <h2>Choose your buying option</h2>
+          </div>
+          <p>
+            Start with a one-time purchase or subscribe for ongoing savings and easier restocks.
+          </p>
+        </div>
+
+        <div class="shop-layout">
+          <div class="shop-stage">
+            <img class="shop-can" src="can.jpeg" alt="NeurovaPlus can in shop section" />
+          </div>
+
+          <article class="card">
+            <div class="product-title">NeurovaPlus Focus Drink</div>
+            <div class="price">$29.99</div>
+            <p class="copy">Clean energy, sharper focus, and a smoother daily routine for work, study, and everything in between.</p>
+
+            <div class="option-row">
+              <span class="option active">Berry Focus</span>
+              <span class="option">Citrus Boost</span>
+              <span class="option">Original Focus</span>
+              <span class="option">Zero Sugar</span>
+            </div>
+
+            <div class="option-row">
+              <span class="option active">One-Time Purchase</span>
+              <span class="option">Subscribe &amp; Save 10%</span>
+              <span class="option">Starter Bundle</span>
+            </div>
+
+            <div class="hero-actions" style="margin-top:1.35rem; margin-bottom:0;">
+              <a class="btn btn-primary" href="mailto:hello@neurovaplus.com?subject=Order%20Inquiry">Add to Cart</a>
+              <a class="btn btn-light" href="mailto:hello@neurovaplus.com?subject=Subscription%20Inquiry">Subscribe</a>
+            </div>
+
+            <div class="proof">
+              <div class="avatars">
+                <span class="avatar"></span>
+                <span class="avatar"></span>
+                <span class="avatar"></span>
+                <span class="avatar"></span>
+              </div>
+              <span class="copy">Loved by students, professionals, creators, and productivity-focused customers</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">FAQ</span>
+            <h2>Questions customers ask most</h2>
+          </div>
+          <p>
+            Quick answers about flavours, subscriptions, and how to buy.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>What flavours are available?</h4>
+            <p>NeurovaPlus is currently presented in Berry Focus, Citrus Boost, Original Focus, and Zero Sugar.</p>
+          </div>
+          <div class="faq-item">
+            <h4>Can I buy once without subscribing?</h4>
+            <p>Yes. You can choose a one-time purchase, a starter bundle, or a subscription plan.</p>
+          </div>
+          <div class="faq-item">
+            <h4>What is the benefit of subscribing?</h4>
+            <p>Subscribers save 10% and make it easier to keep NeurovaPlus stocked as part of their regular routine.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="social-band">
+      <div class="container">
+        <span class="eyebrow" style="color:white; border-color:rgba(255,255,255,0.16); background:rgba(255,255,255,0.10)">Follow the routine</span>
+        <h2>See how NeurovaPlus fits real lifestyles</h2>
+        <p>
+          From campus tables to office meetings to weekend game days, NeurovaPlus is designed to show up wherever focus and energy matter.
+        </p>
+        <div class="social-row">
+          <span class="social-chip">Students</span>
+          <span class="social-chip">Professionals</span>
+          <span class="social-chip">Creators</span>
+          <span class="social-chip">Everyday Life</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="brand">
+          <span class="logo" aria-hidden="true"></span>
+          <span>NeurovaPlus</span>
+        </div>
+        <div class="footer-links">
+          <a href="#flavours">Flavours</a>
+          <a href="#about">About</a>
+          <a href="#audiences">For You</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#shop">Buy Now</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </div>
+
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h4>NeurovaPlus</h4>
+          <div class="footer-note">Clean energy and sharper focus for students, professionals, creators, and everyday routines.</div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="#shop">One-Time Purchase</a>
+          <a href="#shop">Subscribe & Save</a>
+          <a href="#shop">Starter Bundle</a>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <a href="#flavours">Flavours</a>
+          <a href="#about">About</a>
+          <a href="#audiences">For You</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <a href="#home">Home</a>
+          <a href="#shop">Buy Now</a>
+          <a href="#home">Back to Top</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
